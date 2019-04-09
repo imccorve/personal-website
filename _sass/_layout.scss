@@ -85,9 +85,44 @@
         }
     }
 }
+.social-media-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+.social-media-list-element {
+    margin-right: 2rem;
+    @include media-query($on-palm) {
+        svg {        
+            width: 2rem;
+            height: 2rem;
+        }
 
-
-
+    }
+}
+.username {
+    @include media-query($on-palm) {
+        display: none
+    }
+}
+.welcome-text {
+    text-align: center;
+    margin-bottom: 4rem;
+    @include media-query($on-palm) {
+        font-size: 1.25rem;
+    }
+}
+.experience-list {
+    ul {
+        list-style: none;
+    }
+    p {
+        margin: 0 .25rem .75rem
+    }
+    h4 {
+        margin-bottom: 0
+    }
+}
 /**
  * Site footer
  */

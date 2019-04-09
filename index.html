@@ -3,21 +3,14 @@ layout: default
 ---
 
 <div class="home">
+  <h1 class="welcome-text">
+    Hi, I'm <strong>Imoni McCorvey</strong> a Software Engineer currently residing in New Orleans.
+    I'm currently working on web applications in React, Typescript and Python. I enjoy
+    drawing and creating games in Unity in my spare time.
+  </h1>
 
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <hr style="margin-bottom: 2rem">
+  {% include social_links.html %}
+  {% include experience_list.html %}
 
 </div>
