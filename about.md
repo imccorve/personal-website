@@ -4,8 +4,9 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+I'm a software engineer currently based in Atlanta.
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
+I created this website using Jekyll. They provide a theme which makes it easy to manage a blogging style site.
 You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+
+I bought the imonimccorvey domain on [Google Domains](https://domains.google/) and I use [Netlify](https://www.netlify.com/) to host and deploy the site.
