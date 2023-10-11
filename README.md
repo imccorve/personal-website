@@ -12,3 +12,5 @@ https://github.com/jekyll/jekyll
 
 ## Makrdown
 https://github.com/gettalong/kramdown
+
+Run using: bundle exec jekyll serve
