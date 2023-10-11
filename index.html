@@ -4,14 +4,12 @@ layout: default
 
 <div class="home">
   <h1 class="welcome-text">
-    Hi, I'm <strong>Imoni McCorvey</strong> a Software Engineer currently residing in New Orleans.
-    I'm currently working on web applications in React, Typescript and Python. I enjoy
-    drawing and creating games in Unity in my spare time.
+    Hi, I'm <strong>Imoni McCorvey</strong> a Software Engineer currently residing in Atlanta.
+    I'm currently working on web and mobile applications in React and Typescript.
   </h1>
-
   <hr style="margin-bottom: 2rem">
   {% include social_links.html %}
-  {% include experience_list.html %}
+  <h2> Projects and blog posts </h2>
   <ul>
     {% for post in site.posts %}
       <li>
@@ -19,5 +17,7 @@ layout: default
       </li>
     {% endfor %}
   </ul>
+  <h2> Past Work </h2>
+  {% include experience_list.html %}
 
 </div>
