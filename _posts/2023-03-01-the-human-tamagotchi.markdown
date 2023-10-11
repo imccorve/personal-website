@@ -62,7 +62,7 @@ Once all the components are prepared, you can put everything together. Connect y
 
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@imonitroni/video/7198309070435044650" data-video-id="7198309070435044650" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@imonitroni" href="https://www.tiktok.com/@imonitroni?refer=embed">@imonitroni</a> Using the arcade 1x4 from adafruit I can now interact with Mametchi-chan ❤️😩 but there’s still more work to be done until it’s wearable for my Mardi Gras outfit<a title="adafruit" target="_blank" href="https://www.tiktok.com/tag/adafruit?refer=embed">#adafruit</a> <a title="creativecoding" target="_blank" href="https://www.tiktok.com/tag/creativecoding?refer=embed">#creativecoding</a> <a title="ledlights" target="_blank" href="https://www.tiktok.com/tag/ledlights?refer=embed">#ledlights</a> <a title="tamagotchi" target="_blank" href="https://www.tiktok.com/tag/tamagotchi?refer=embed">#tamagotchi</a> <a target="_blank" title="♬ Boy&#39;s a Liar - PinkPantheress" href="https://www.tiktok.com/music/Boy's-a-Liar-7169578597873616897?refer=embed">♬ Boy&#39;s a Liar - PinkPantheress</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
-I think next would actually be cool to put a tamagotchi emulator directly on the matrixportal to get the full tamagotchi experience. Though the purpose of a tamagotchi is to be pocket sized so haveing a 32x32 screen might be difficult to transport. (Unless you incorporate the screen into a
+I think next would actually be cool to put a tamagotchi emulator directly on the matrixportal to get the full tamagotchi experience. Though the purpose of a tamagotchi is to be pocket sized so having a 32x32 screen might be difficult to transport. (Unless you incorporate the screen into a
 backpack or workbag? https://learn.adafruit.com/matrix-portal-rgb-display-handbag)
 
 ## **Troubleshooting**
@@ -71,3 +71,8 @@ If you encounter any issues during the process, refer to the following resources
 
 1. Adafruit's **[troubleshooting guide](https://forums.adafruit.com/viewtopic.php?t=171857)**
 2. The **[Easiest way to use storage.erase_filesystem()](https://learn.adafruit.com/welcome-to-circuitpython/troubleshooting#easiest-way-use-storage-dot-erase-filesystem-2987288-24)**
+
+## **Questions?**
+
+Send me a DM!
+{% include social_links.html %}
