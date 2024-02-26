@@ -2,76 +2,64 @@
 
     import { browser } from '$app/environment';
     import * as THREE from 'three';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-    import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
-    if(browser) {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+    import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
     
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        const loader = new GLTFLoader();
-
-        // Set up DRACOLoader
-const dracoLoader = new DRACOLoader();
-// Point to where you host the Draco decoder files
-dracoLoader.setDecoderPath('../../node_modules/three/examples/jsm/libs/draco/');
-        // Load a glTF resource
-loader.load(
-	// resource URL
-	'models/metaballcpersonalwebsite.glb',
-	// called when the resource is loaded
-	function ( gltf ) {
-    gltf.scene.position.set(0, 0, 0); // Center in the scene
-
-
-		scene.add( gltf.scene );
-
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Group
-		gltf.scenes; // Array<THREE.Group>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
-
-	},
-	// called while loading is progressing
-	function ( xhr ) {
-
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
-	},
-	// called when loading has errors
-	function ( error ) {
-
-    console.log(error)
-		console.log( 'An error happened' );
-
-	}
-);
-loader.setDRACOLoader(dracoLoader)
-
-
+    if(browser) {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      // const loader = new GLTFLoader();
+      const objLoader = new OBJLoader();
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.domElement.style.position = 'fixed'; // Position the canvas
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';
     renderer.domElement.style.zIndex = '-1'; // Ensure it's behind other content
         document.body.appendChild( renderer.domElement );
-    
+        let loadedObject = null; // This variable will hold the reference to your loaded object
+
+          objLoader.load(
+            'models/Hundepaar.OBJ', // path to your .obj file
+            function (object) { // onLoad callback
+              console.log(object); // Inspect the object structure in the browser console
+
+              const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
+              
+              object.rotation.x = Math.PI;
+              object.rotation.y = Math.PI;
+              scene.add(object);
+              loadedObject = object; // Save the loaded object for later use
+
+            },
+            function (xhr) { // onProgress callback
+              console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+            },
+            function (error) { // onError callback
+              console.error('An error happened loading the OBJ file', error);
+            }
+          );
         const geometry = new THREE.BoxGeometry( 1, 1, 1 );
         const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
         const cube = new THREE.Mesh( geometry, material );
-        scene.add( cube );
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // soft white light
+scene.add(ambientLight);
 
-        camera.position.z = 5;
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(1, 1, 1); // Adjust as needed
+scene.add(directionalLight);
+
+        // scene.add( cube );
+
+        camera.position.z = 1000;
 
         function animate() {
             requestAnimationFrame( animate );
 
                     // Rotate cube
         cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+        loadedObject.rotation.y -= 0.01;
 
             renderer.render( scene, camera );
         }
