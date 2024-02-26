@@ -45,7 +45,11 @@
     p {
       margin-top: 0;
     }
-
+    .subtitle {
+      font-family: "Open Sans", sans-serif;
+      font-size: 20px;
+      font-weight: 200;
+    }
     @media (max-width: 768px) {
         .project-display {
           display: flex;

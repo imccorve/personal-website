@@ -2,12 +2,56 @@
 
     import { browser } from '$app/environment';
     import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+    import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
     if(browser) {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     
         const renderer = new THREE.WebGLRenderer({ alpha: true });
+        const loader = new GLTFLoader();
+
+        // Set up DRACOLoader
+const dracoLoader = new DRACOLoader();
+// Point to where you host the Draco decoder files
+dracoLoader.setDecoderPath('../../node_modules/three/examples/jsm/libs/draco/');
+        // Load a glTF resource
+loader.load(
+	// resource URL
+	'models/metaballcpersonalwebsite.glb',
+	// called when the resource is loaded
+	function ( gltf ) {
+    gltf.scene.position.set(0, 0, 0); // Center in the scene
+
+
+		scene.add( gltf.scene );
+
+		gltf.animations; // Array<THREE.AnimationClip>
+		gltf.scene; // THREE.Group
+		gltf.scenes; // Array<THREE.Group>
+		gltf.cameras; // Array<THREE.Camera>
+		gltf.asset; // Object
+
+	},
+	// called while loading is progressing
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+    console.log(error)
+		console.log( 'An error happened' );
+
+	}
+);
+loader.setDRACOLoader(dracoLoader)
+
+
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.domElement.style.position = 'fixed'; // Position the canvas
     renderer.domElement.style.top = '0';
@@ -19,7 +63,7 @@
         const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
         const cube = new THREE.Mesh( geometry, material );
         scene.add( cube );
-    
+
         camera.position.z = 5;
 
         function animate() {
@@ -91,6 +135,17 @@
       font-style: normal;
       font-size: 32px;
       font-weight: 400;
+
+      /* override button styles */
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      margin: 0;
+      padding: 0;
+      text-align: inherit;
+      font: inherit;
+      border-radius: 0;
+      appearance: none; 
     }
     
   @media (max-width: 768px) {

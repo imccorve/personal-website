@@ -11,16 +11,18 @@
     console.log(emblaInstance)
   });
     let projects = [
-        { title: 'Project 1', subtitle: 'Description 1', src: '/videos/tiktokversion.mp4', mediaType: 'video' },
+        { title: 'Project 1', subtitle: 'Using touchdesigner created audio reactive visuals.', src: '/videos/tiktokversion.mp4', mediaType: 'video' },
         { title: 'Project 2', subtitle: 'Description 1', src: 'https://www.tiktok.com/tag/tamagotchi?refer=embed', mediaType: 'video' }
     ];
 
   let emblaApi
-  let options = { loop: false, align: 'start' }
+  let options = { loop: true, align: 'start' }
 
   function onInit(event) {
     emblaApi = event.detail
     console.log(emblaApi.slideNodes()) // Access API
+    emblaApi.scrollNext()
+    console.log("scrollnext")
   }
 
 </script>
@@ -45,8 +47,8 @@
     <!-- https://www.embla-carousel.com/get-started/svelte/ -->
     <div 
     class="embla" 
-    use:emblaCarouselSvelte
-    on:emblaInit="{onInit}"
+    use:emblaCarouselSvelte={{ options }}
+    on:emblaInit={onInit}
     >
     <div class="embla__viewport" bind:this={viewportNode}>
       <div class="embla__container">
@@ -58,8 +60,8 @@
           </div>
       </div>
     </div>
-    <!-- <button class="embla__prev" on:click={() => emblaApi && emblaApi.scrollPrev()}>Prev</button>
-    <button class="embla__next" on:click={() => emblaApi && emblaApi.scrollNext()}>Next</button> -->
+    <!-- <button class="embla__prev" on:click={() => emblaApi?.scrollPrev()}>Prev</button>
+    <button class="embla__next" on:click={() => emblaApi?.scrollNext()}>Next</button> -->
 
     </div>
 
