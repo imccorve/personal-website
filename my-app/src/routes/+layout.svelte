@@ -59,7 +59,10 @@ scene.add(directionalLight);
 
                     // Rotate cube
         cube.rotation.x += 0.01;
-        loadedObject.rotation.y -= 0.01;
+        if (loadedObject) {
+          loadedObject.rotation.y -= 0.01;
+
+        }
 
             renderer.render( scene, camera );
         }
