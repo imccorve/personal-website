@@ -1,10 +1,10 @@
 <script lang="ts"> 
-
     import { browser } from '$app/environment';
     import * as THREE from 'three';
-    // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
     import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-    
+    import LoadingScreen from '../LoadingScreen.svelte';
+    import { isLoading } from '$lib/stores/loadingStore.js';
+
     if(browser) {
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -31,6 +31,9 @@
               object.rotation.y = Math.PI;
               scene.add(object);
               loadedObject = object; // Save the loaded object for later use
+              console.log("Model loaded, setting isLoading to false");
+
+              isLoading.set(false);
 
             },
             function (xhr) { // onProgress callback
@@ -162,7 +165,11 @@ scene.add(directionalLight);
 
 </style>
 
+{#if $isLoading}
+<LoadingScreen />
+{:else}
 <div class="grid-container">
+
     <div class="header"> 
         <a href="/">
         <h2>IMONI MCCORVEY</h2>
@@ -180,3 +187,4 @@ scene.add(directionalLight);
         </a>
       </footer>
 </div>
+{/if}
