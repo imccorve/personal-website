@@ -37,11 +37,11 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
-
 Things left to do
-* Swipe to navigate
-* Next Button
-* Loading Screen
-* Previous Work
-* BG Animation responsive to swipe
-* favicon
+
+- Swipe to navigate
+- Next Button
+- Loading Screen
+- Previous Work
+- BG Animation responsive to swipe
+- favicon
