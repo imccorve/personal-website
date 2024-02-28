@@ -1,14 +1,7 @@
 <script lang="ts">
   import ProjectSection from "../ProjectSection.svelte";
-  import emblaCarouselSvelte from "embla-carousel-svelte";
-  import { onMount } from "svelte";
+  import emblaCarouselSvelte from "embla-carousel-svelte";  
 
-  let viewportNode;
-  let emblaInstance;
-  onMount(() => {
-    emblaInstance = emblaCarouselSvelte(viewportNode);
-    console.log(emblaInstance);
-  });
   let projects = [
     {
       title: "Project 1",
@@ -25,30 +18,62 @@
   ];
 
   let emblaApi;
-  let options = { loop: true, align: "start" };
+  let options = { loop: true };
+  let plugins = [];
 
-  function onInit(event) {
+  let prevButtonEnabled = false;
+  let nextButtonEnabled = false;
+
+  const onInit = () => {
     emblaApi = event.detail;
-    console.log(emblaApi.slideNodes()); // Access API
-    emblaApi.scrollNext();
-    console.log("scrollnext");
-  }
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    onSelect();
+  };
+
+  const onSelect = () => {
+    if (!emblaApi) return;
+    prevButtonEnabled = emblaApi.canScrollPrev();
+    nextButtonEnabled = emblaApi.canScrollNext();
+  };
+
+  const scrollPrev = () => {
+    if (emblaApi) emblaApi.scrollPrev();
+  };
+
+  const scrollNext = () => {
+    if (emblaApi) emblaApi.scrollNext();
+  };
+
 </script>
 
 <!-- https://www.embla-carousel.com/get-started/svelte/ -->
-<div class="embla" use:emblaCarouselSvelte={{ options }} on:emblaInit={onInit}>
-  <div class="embla__viewport" bind:this={viewportNode}>
+<div class="embla">
+  <div class="embla__viewport" use:emblaCarouselSvelte={{ options, plugins }} on:emblaInit={onInit}>
     <div class="embla__container">
+      {#each projects as project}
       <div class="embla__slide">
-        <ProjectSection project={projects[0]} />
+        <ProjectSection project={project} />
       </div>
-      <div class="embla__slide">
-        <ProjectSection project={projects[1]} />
-      </div>
+      {/each}
     </div>
   </div>
-  <!-- <button class="embla__prev" on:click={() => emblaApi?.scrollPrev()}>Prev</button>
-    <button class="embla__next" on:click={() => emblaApi?.scrollNext()}>Next</button> -->
+  <button class="embla__prev" on:click={() => { 
+      scrollPrev()
+      console.log("pressed")
+    }}
+    disabled={!prevButtonEnabled}
+  >
+    Prev
+  </button>
+  <button class="embla__next" on:click={() => {
+      scrollNext()
+      console.log("pressed")
+    }}
+    disabled={!nextButtonEnabled}
+  >
+    Next
+  </button>
 </div>
 
 <style>
@@ -62,6 +87,6 @@
   }
   .embla__slide {
     flex: 0 0 100%;
-    /* min-width: 0; */
+    min-width: 0;
   }
 </style>

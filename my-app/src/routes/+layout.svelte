@@ -15,28 +15,27 @@
     );
 
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    // const loader = new GLTFLoader();
     const objLoader = new OBJLoader();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.style.position = "fixed"; // Position the canvas
+    renderer.domElement.style.position = "fixed";
     renderer.domElement.style.top = "0";
     renderer.domElement.style.left = "0";
     renderer.domElement.style.zIndex = "-1"; // Ensure it's behind other content
     document.body.appendChild(renderer.domElement);
-    let loadedObject = null; // This variable will hold the reference to your loaded object
+    let loadedObject = null;
 
     objLoader.load(
-      "models/Hundepaar.OBJ", // path to your .obj file
+      "models/Hundepaar.OBJ",
       function (object) {
         // onLoad callback
-        console.log(object); // Inspect the object structure in the browser console
+        console.log(object);
 
         const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
 
         object.rotation.x = Math.PI;
         object.rotation.y = Math.PI;
         scene.add(object);
-        loadedObject = object; // Save the loaded object for later use
+        loadedObject = object;
         console.log("Model loaded, setting isLoading to false");
 
         isLoading.set(false);
@@ -50,25 +49,18 @@
         console.error("An error happened loading the OBJ file", error);
       },
     );
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // soft white light
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1); // Adjust as needed
+    directionalLight.position.set(1, 1, 1);
     scene.add(directionalLight);
-
-    // scene.add( cube );
 
     camera.position.z = 1000;
 
     function animate() {
       requestAnimationFrame(animate);
 
-      // Rotate cube
-      cube.rotation.x += 0.01;
       if (loadedObject) {
         loadedObject.rotation.y -= 0.01;
       }
@@ -78,30 +70,12 @@
     animate();
   }
 
-  let projects = [
-    {
-      title: "Project 1",
-      subtitle: "Description 1",
-      src: "/path/to/resource1",
-      type: "image",
-      mediaType: "img",
-    },
-    {
-      title: "Project 2",
-      subtitle: "Description 1",
-      src: "/path/to/resource1",
-      type: "image",
-      mediaType: "img",
-    },
-  ];
-
   let username = "imoni.mccorvey";
   let domain = "gmail";
   let tld = "com";
 
-  // Function to handle the click event
+  // Function to handle the contact click event
   function sendEmail() {
-    // Combine the parts and initiate the mailto action
     window.location.href = `mailto:${username}@${domain}.${tld}`;
   }
 </script>
@@ -240,7 +214,7 @@
 
     .footer {
       flex-direction: column;
-      align-items: flex-start; /* Align to the start of the container */
+      align-items: flex-start;
     }
 
     .footer h2 {
