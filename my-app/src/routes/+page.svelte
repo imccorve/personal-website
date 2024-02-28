@@ -1,6 +1,7 @@
 <script lang="ts">
   import ProjectSection from "../ProjectSection.svelte";
   import emblaCarouselSvelte from "embla-carousel-svelte";
+  import ArrowIcon from "../components/ArrowIcon.svelte";
 
   let projects = [
     {
@@ -48,7 +49,9 @@
 
 <!-- https://www.embla-carousel.com/get-started/svelte/ -->
 <div class="embla__section">
-  <button class="prev-button" on:click={scrollPrev} disabled={!prevButtonEnabled}>→</button>
+  <button class="prev-button" on:click={scrollPrev} disabled={!prevButtonEnabled}>
+    <ArrowIcon style={"transform: scale(-1, 1); transform-origin: center;"}/>
+      </button>
   <div class="embla">
     <div
       class="embla__viewport"
@@ -64,12 +67,26 @@
       </div>
     </div>
   </div>
-  <button class="next-button" on:click={scrollNext}  disabled={!nextButtonEnabled}>→</button>
+  <button class="next-button" on:click={scrollNext}  disabled={!nextButtonEnabled}>
+    <ArrowIcon />
+  </button>
 </div>
 
 <style>
   .prev-button, .next-button {
     grid-column: span 1;
+
+    /* override button styles */
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    font: inherit;
+    border-radius: 0;
+    appearance: none;
+
   }
   .embla__section {
     display: contents; /* This makes .embla__section not generate a box itself, allowing its children to directly participate in the grid layout defined by .grid-container */
