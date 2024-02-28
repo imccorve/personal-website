@@ -39,10 +39,10 @@ You can preview the production build with `npm run preview`.
 
 Things left to do
 
-- Swipe to navigate
-- Next Button -
+- social media
+- favicon
 - Loading Screen
 - Previous Work
+- Swipe to navigate
+- Next Button -
 - BG Animation responsive to swipe
-- favicon
-- social media

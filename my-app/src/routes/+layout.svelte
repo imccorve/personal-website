@@ -4,6 +4,7 @@
   import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
   import LoadingScreen from "../LoadingScreen.svelte";
   import { isLoading } from "$lib/stores/loadingStore.js";
+  import SocialMedia from "../components/SocialMedia.svelte";
 
   if (browser) {
     const scene = new THREE.Scene();
@@ -136,6 +137,7 @@
       <a href="/">
         <h2>IMONI MCCORVEY</h2>
       </a>
+      <SocialMedia />
     </div>
     <slot />
     <footer class="footer">
@@ -162,8 +164,9 @@
   /* Header */
   .header {
     grid-column: 1 / -1;
-    font-size: 32;
-    margin-bottom: 24;
+    display: flex;
+    justify-content: space-between; /* Align items to the ends of the container */
+    align-items: center;
   }
 
   /* Footer */
@@ -181,6 +184,7 @@
     font-weight: 400;
     margin: 0;
     filter: url(#distressInkEffect3);
+    margin-right: 20px;
   }
 
   a {
