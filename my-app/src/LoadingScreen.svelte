@@ -1,11 +1,9 @@
 <script>
-    import { isLoading } from '$lib/stores/loadingStore.js';
+  import { isLoading } from "$lib/stores/loadingStore.js";
 </script>
-  
+
 {#if $isLoading}
-<div class="loading-screen">
-  Loading...
-</div>
+  <div class="loading-screen">Loading...</div>
 {/if}
 
 <style>

@@ -137,7 +137,6 @@
         <h2>IMONI MCCORVEY</h2>
       </a>
     </div>
-
     <slot />
     <footer class="footer">
       <button on:click={sendEmail}>
