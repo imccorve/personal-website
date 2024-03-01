@@ -39,7 +39,7 @@ You can preview the production build with `npm run preview`.
 
 Things left to do
 
-- social media
+- social media -
 - favicon
 - Loading Screen
 - Previous Work

@@ -51,7 +51,7 @@
 <div class="embla__section">
   <button class="prev-button" on:click={scrollPrev} disabled={!prevButtonEnabled}>
     <ArrowIcon style={"transform: scale(-1, 1); transform-origin: center;"}/>
-      </button>
+  </button>
   <div class="embla">
     <div
       class="embla__viewport"
