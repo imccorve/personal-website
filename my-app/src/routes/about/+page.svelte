@@ -1,5 +1,6 @@
 <script>
   import { tick } from "svelte";
+  import ExperienceList from "../../ExperienceList.svelte";
 
   let copied = false;
   let timeoutId;
@@ -31,10 +32,10 @@
 <p>
   I'm an experienced software engineer with a extensive understanding of the
   creative workflow, able to utilize technology efficiently in commercial
-  settings.
-</p>
+  settings. 
 
-<p>Feel free to contact me here!</p>
+  Feel free to contact me below!
+</p>
 {#if copied}
   <div class="message">Email address copied to clipboard!</div>
 {/if}
@@ -48,6 +49,7 @@
 >
   imonimccorvey[at]gmail.com
 </div>
+<ExperienceList />
 
 <style>
   p {

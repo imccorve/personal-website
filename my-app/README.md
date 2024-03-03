@@ -39,10 +39,15 @@ You can preview the production build with `npm run preview`.
 
 Things left to do
 
-- social media -
 - favicon
-- Loading Screen
-- Previous Work
 - Swipe to navigate
-- Next Button -
+- Transitions
+- Chabnge website host
+- links instead
 - BG Animation responsive to swipe
+- put in project info
+- social media -
+- Loading Screen -
+- Previous Work -
+- Next Button -
+- anchor footer to bottom of screen?
