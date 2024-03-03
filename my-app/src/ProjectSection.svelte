@@ -13,7 +13,7 @@
       ></video>
     {:else if project.mediaType === "twitter-video"}
       <!-- Twitter embed iframe (you'll need to use the proper embed code from Twitter) -->
-      <iframe src={project.src} frameborder="0" allowfullscreen> </iframe>
+      <iframe width="100%" height="100%" modestbranding=1 controls=0 src={project.src + '&modestbranding=1' + '&showinfo=0' + '&controls=0' + '&rel=0' + '&color=white' + '&fs=0' + '&loop=1'} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     {:else}
       <img src={project.src} alt={project.title} />
     {/if}
@@ -53,7 +53,7 @@
   }
 
   p {
-    margin-top: 0;
+    margin: 0;
   }
   .subtitle {
     font-family: "Open Sans", sans-serif;

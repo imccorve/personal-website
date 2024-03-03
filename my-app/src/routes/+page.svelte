@@ -7,14 +7,14 @@
     {
       title: "AudioReactive Blob Tracking",
       subtitle: "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
-      src: "/videos/tiktokversion.mp4",
-      mediaType: "video",
+      src: "https://www.youtube.com/embed/79bOJq-iLXQ?si=MLkCdnPxQOt4N3_3",
+      mediaType: "twitter-video",
     },
     {
-      title: "Project 2",
-      subtitle: "Description 1",
-      src: "https://www.tiktok.com/tag/tamagotchi?refer=embed",
-      mediaType: "video",
+      title: "Building An 'Interactive' Digital Pet",
+      subtitle: "Coding and hardware integration project using python and an LED display.",
+      src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",
+      mediaType: "twitter-video",
     },
   ];
 

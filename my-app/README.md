@@ -39,13 +39,13 @@ You can preview the production build with `npm run preview`.
 
 Things left to do
 
-- favicon
 - Swipe to navigate
 - Transitions
-- Chabnge website host
-- links instead
+- Change website host
 - BG Animation responsive to swipe
-- put in project info
+- favicon -
+- links instead -
+- put in project info -
 - social media -
 - Loading Screen -
 - Previous Work -
