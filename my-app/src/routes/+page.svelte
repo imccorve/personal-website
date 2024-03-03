@@ -5,8 +5,8 @@
 
   let projects = [
     {
-      title: "Project 1",
-      subtitle: "Using touchdesigner created audio reactive visuals.",
+      title: "AudioReactive Blob Tracking",
+      subtitle: "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
       src: "/videos/tiktokversion.mp4",
       mediaType: "video",
     },

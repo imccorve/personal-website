@@ -35,7 +35,6 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     margin-right: 20px;
-    width: 50%;
     min-width: 50%;
   }
 
@@ -61,7 +60,7 @@
     font-size: 20px;
     font-weight: 200;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1280px) {
     .project-display {
       display: flex;
       flex-direction: column-reverse;
