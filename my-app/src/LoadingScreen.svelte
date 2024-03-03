@@ -18,10 +18,10 @@
     </svg>
   
     <!-- Text elements positioned with CSS -->
-    <div class="word" id="love">to love</div>
-    <div class="word" id="devour">to devour</div>
-    <div class="word" id="change">to change</div>
-    <div class="word" id="become">to become</div>
+    <div class="word" id="love">ideate</div>
+    <div class="word" id="devour">protoype</div>
+    <div class="word" id="change">execute</div>
+    <div class="word" id="become">review</div>
   </div>
   
 
