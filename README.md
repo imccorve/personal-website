@@ -1,16 +1,54 @@
-# Personal Website
+# create-svelte
 
-# Serverless Deployment
-Netlify
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3f16d700-04ed-4d8d-b5b1-6c597b3b9c1f/deploy-status)](https://app.netlify.com/sites/wizardly-mccarthy-bfcb8b/deploys)
+## Creating a project
 
-## Domain by Google Domains
+If you're seeing this, you've probably already done this step. Congrats!
 
-## Jekyll
-https://github.com/jekyll/jekyll
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-## Makrdown
-https://github.com/gettalong/kramdown
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-Run using: bundle exec jekyll serve
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+Things left to do
+
+- Swipe to navigate
+- Transitions
+- Change website host
+- BG Animation responsive to swipe
+- favicon -
+- links instead -
+- put in project info -
+- social media -
+- Loading Screen -
+- Previous Work -
+- Next Button -
+- anchor footer to bottom of screen?
+- 404 page -
