@@ -26,15 +26,12 @@
     let loadedObject = null;
 
     objLoader.load(
-      "models/Hundepaar.OBJ",
+      "models/hundepaar_medium_res.obj",
       function (object) {
-        // onLoad callback
         console.log(object);
 
         const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
 
-        object.rotation.x = Math.PI;
-        object.rotation.y = Math.PI;
         scene.add(object);
         loadedObject = object;
         console.log("Model loaded, setting isLoading to false");
@@ -46,24 +43,23 @@
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
       },
       function (error) {
-        // onError callback
         console.error("An error happened loading the OBJ file", error);
       },
     );
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // soft white light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(1, 1, 1);
     scene.add(directionalLight);
 
-    camera.position.z = 1000;
+    camera.position.z = 4;
 
     function animate() {
       requestAnimationFrame(animate);
 
       if (loadedObject) {
-        loadedObject.rotation.y -= 0.01;
+        loadedObject.rotation.y += 0.005;
       }
 
       renderer.render(scene, camera);
