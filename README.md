@@ -41,7 +41,7 @@ Things left to do
 
 - Swipe to navigate
 - Transitions
-- Change website host
+- Change website host - 
 - BG Animation responsive to swipe
 - favicon -
 - links instead -
@@ -52,3 +52,6 @@ Things left to do
 - Next Button -
 - anchor footer to bottom of screen?
 - 404 page -
+- add blog -
+- add vimeo link -
+                                

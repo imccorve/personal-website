@@ -16,6 +16,11 @@
       src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",
       mediaType: "twitter-video",
     },
+    {
+        title: "Particle System using openFrameworks",
+        subtitle: "Created using openFrameworks https://openframeworks.cc/",
+        mediaType: "vimeo",
+    }
   ];
 
   let emblaApi;

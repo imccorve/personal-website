@@ -14,6 +14,8 @@
     {:else if project.mediaType === "twitter-video"}
       <!-- Twitter embed iframe (you'll need to use the proper embed code from Twitter) -->
       <iframe width="100%" height="100%" modestbranding=1 controls=0 src={project.src + '&modestbranding=1' + '&showinfo=0' + '&controls=0' + '&rel=0' + '&color=white' + '&fs=0' + '&loop=1'} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    {:else if project.mediaType === "vimeo"}
+    <iframe src="https://player.vimeo.com/video/292496099?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="top:0;left:0;width:100%;height:100%;" title="Particle_System_video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
     {:else}
       <img src={project.src} alt={project.title} />
     {/if}
