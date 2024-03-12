@@ -135,7 +135,7 @@
       </a>
       <SocialMedia />
     </div>
-    <slot />
+    <slot/>
     <footer class="footer">
       <button on:click={sendEmail}>
         <h2>CONTACT</h2>

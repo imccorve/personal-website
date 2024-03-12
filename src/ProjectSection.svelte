@@ -23,6 +23,11 @@
   <div class="information">
     <h1 class="title">{project.title}</h1>
     <p class="subtitle">{project.subtitle}</p>
+    {#if project.extraLink}
+        <a href={project.extraLink}>
+            Read my process here
+        </a>
+    {/if}
   </div>
 </div>
 

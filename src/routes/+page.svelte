@@ -14,6 +14,7 @@
       title: "Building An 'Interactive' Digital Pet",
       subtitle: "Coding and hardware integration project using python and an LED display.",
       src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",
+      extraLink: "/the-human-tamagotchi",
       mediaType: "twitter-video",
     },
     {
