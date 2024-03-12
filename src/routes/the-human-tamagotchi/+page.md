@@ -4,6 +4,8 @@ title:  "Building Your Own 'Interactive' Digital Pet with Adafruit's Matrix Port
 date:   2023-10-10 13:46:40
 categories: tech project
 ---
+# "Building Your Own 'Interactive' Digital Pet with Adafruit's Matrix Portal"
+
 <iframe src="https://giphy.com/embed/4oZpTY30l6XtK" width="480" height="373" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/90s-nostalgia-tamagotchi-4oZpTY30l6XtK">via GIPHY</a></p>
 
 One late night, I had the idea of dressing up as a human tamagotchi for Mardi Gras parade. I thought it would be cool way to dive into hardware and costume making. Figuring out the execution of this project was a little tough. Initially there was that inclination (trap) people may have where they want to build it from scratch. However from a user's perspective I realized most people won't care about the underlying mechanics of how egg hatching works. As much as I'm doing it for me, I also wanted it to look cool, so I simplified it down to interactive buttons mapped to specific animations.
@@ -41,9 +43,9 @@ I found this solution from this github thread: **[Image Load Issues](https://git
 
 ### **Step 3: Coding with CircuitPython**
 
-We'll use CircuitPython to program the Tamagotchi. If you're unfamiliar with CircuitPython, Adafruit has an excellent **[introductory guide](https://learn.adafruit.com/welcome-to-circuitpython/troubleshooting)** to get you started.
+We'll use CircuitPython to program the tamagotchi. If you're unfamiliar with CircuitPython, Adafruit has an excellent **[introductory guide](https://learn.adafruit.com/welcome-to-circuitpython/troubleshooting)** to get you started.
 
-You'll want to create distinct functions for each interaction with your Tamagotchi. The actions we've included are: feeding, kissing, praising and idling. Each action is tied to a different gif that will play when the action is performed.
+You'll want to create distinct functions for each interaction with your tamagotchi. The actions we've included are: feeding, kissing, praising and idling. Each action is tied to a different gif that will play when the action is performed.
 
 You can use the Adafruit's guide on **[Animating Sprites with CircuitPython](https://learn.adafruit.com/iot-twitter-listener-party-parrot/animating-sprites-with-circuitpython)** as a good starting point.
 
@@ -51,7 +53,7 @@ The code I used is in this repository: [https://github.com/imccorve/tamagotchi-l
 
 ### **Step 4: Connecting Buttons to Actions**
 
-To make the Tamagotchi interactive, we will use arcade buttons. These buttons will trigger different actions such as feed, kiss, praise, etc. We connect the buttons to the Adafruit MatrixPortal M4 and assign each button an action (a specific animation).
+To make the tamagotchi interactive, we will use arcade buttons. These buttons will trigger different actions such as feed, kiss, praise, etc. We connect the buttons to the Adafruit MatrixPortal M4 and assign each button an action (a specific animation).
 
 You can follow this Adafruit guide on **[wiring arcade buttons](https://learn.adafruit.com/adafruit-led-arcade-button-qt/arduino)** for help.
 
