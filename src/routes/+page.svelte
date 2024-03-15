@@ -11,6 +11,12 @@
       mediaType: "twitter-video",
     },
     {
+        title: "Computer Vision-Powered Party Flyer",
+        subtitle: "Leveraged machine learning and Touchdesigner to correlate different gestures with specific audio and visuals in real-time.",
+        src: "https://www.youtube.com/embed/8hOX5mp-MnA?feature=share",
+        mediaType: "twitter-video",
+    },
+    {
       title: "Building An 'Interactive' Digital Pet",
       subtitle: "Coding and hardware integration project using python and an LED display.",
       src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",

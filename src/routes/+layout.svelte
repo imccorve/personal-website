@@ -44,6 +44,7 @@
       },
       function (error) {
         console.error("An error happened loading the OBJ file", error);
+        isLoading.set(false);
       },
     );
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
