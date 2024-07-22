@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: /static/FullstackEngineer.pdf
+Disallow: /static/Creative_Technologist.pdf
