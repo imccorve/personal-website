@@ -1,6 +1,5 @@
 <script>
   import { tick } from "svelte";
-  import ExperienceList from "../../ExperienceList.svelte";
 
   let copied = false;
   let timeoutId;
@@ -49,11 +48,7 @@
 >
   imonimccorvey[at]gmail.com
 </div>
-<ExperienceList />
 
-<p> 
-This site was created using SvelteKit and Threejs. The 3D scan of the Townley Greyhound sculpture is available courtesy of Three D Scans, which can be accessed <a href="https://threedscans.com">here</a>.
-</p>
 <style>
   p {
     grid-column: span 12;

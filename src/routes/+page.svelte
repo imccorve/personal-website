@@ -1,121 +1,87 @@
 <script lang="ts">
   import ProjectSection from "../ProjectSection.svelte";
-  import emblaCarouselSvelte from "embla-carousel-svelte";
-  import ArrowIcon from "../components/ArrowIcon.svelte";
 
   let projects = [
     {
       title: "AudioReactive Blob Tracking",
-      subtitle: "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
+      subtitle:
+        "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
       src: "https://www.youtube.com/embed/79bOJq-iLXQ?si=MLkCdnPxQOt4N3_3",
-      mediaType: "twitter-video",
+      mediaType: "youtube-video",
+      pageData: 2024,
     },
     {
-        title: "Computer Vision-Powered Party Flyer",
-        subtitle: "Leveraged machine learning and Touchdesigner to correlate different gestures with specific audio and visuals in real-time.",
-        src: "https://www.youtube.com/embed/8hOX5mp-MnA?feature=share",
-        mediaType: "twitter-video",
+      title: "Computer Vision-Powered Party Flyer",
+      subtitle:
+        "Leveraged machine learning and Touchdesigner to correlate different gestures with specific audio and visuals in real-time.",
+      src: "https://www.youtube.com/embed/8hOX5mp-MnA?feature=share",
+      mediaType: "youtube-video",
+      pageData: 2023,
     },
     {
       title: "Building An 'Interactive' Digital Pet",
-      subtitle: "Coding and hardware integration project using python and an LED display.",
+      subtitle:
+        "Coding and hardware integration project using python and an LED display.",
       src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",
       extraLink: "/the-human-tamagotchi",
-      mediaType: "twitter-video",
+      mediaType: "youtube-video",
+      pageData: 2022,
     },
     {
-        title: "Particle System using openFrameworks",
-        subtitle: "Created using openFrameworks https://openframeworks.cc/",
-        mediaType: "vimeo",
-    }
+      title: "Particle System using openFrameworks",
+      subtitle: "Created using openFrameworks https://openframeworks.cc/",
+      src: "https://player.vimeo.com/video/292496099?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
+      mediaType: "vimeo",
+      pageData: 2019,
+    },
   ];
-
-  let emblaApi;
-  let options = { loop: true };
-  let plugins = [];
-
-  let prevButtonEnabled = false;
-  let nextButtonEnabled = false;
-
-  const onInit = () => {
-    emblaApi = event.detail;
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    onSelect();
-  };
-
-  const onSelect = () => {
-    if (!emblaApi) return;
-    prevButtonEnabled = emblaApi.canScrollPrev();
-    nextButtonEnabled = emblaApi.canScrollNext();
-  };
-
-  const scrollPrev = () => {
-    if (emblaApi) emblaApi.scrollPrev();
-  };
-
-  const scrollNext = () => {
-    if (emblaApi) emblaApi.scrollNext();
-  };
 </script>
 
-<!-- https://www.embla-carousel.com/get-started/svelte/ -->
-<div class="embla__section">
-  <button class="prev-button" on:click={scrollPrev} disabled={!prevButtonEnabled}>
-    <ArrowIcon style={"transform: scale(-1, 1); transform-origin: center;"}/>
-  </button>
-  <div class="embla">
-    <div
-      class="embla__viewport"
-      use:emblaCarouselSvelte={{ options, plugins }}
-      on:emblaInit={onInit}
-    >
-      <div class="embla__container">
-        {#each projects as project}
-          <div class="embla__slide">
-            <ProjectSection {project} />
-          </div>
-        {/each}
+<div class="page-container">
+  <div class="projects-section">
+    {#each projects as project, index}
+      <div class="project-item" id="project-{index}">
+        <ProjectSection {project} />
       </div>
-    </div>
+    {/each}
   </div>
-  <button class="next-button" on:click={scrollNext}  disabled={!nextButtonEnabled}>
-    <ArrowIcon />
-  </button>
 </div>
 
 <style>
-  .prev-button, .next-button {
-    grid-column: span 1;
+  .page-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
 
-    /* override button styles */
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    padding: 0;
-    text-align: inherit;
-    font: inherit;
-    border-radius: 0;
-    appearance: none;
+  /* Projects Section */
+  .projects-section {
+    margin-bottom: 60px;
+  }
 
+  .project-item {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #f0f0f0;
   }
-  .embla__section {
-    display: contents; /* This makes .embla__section not generate a box itself, allowing its children to directly participate in the grid layout defined by .grid-container */
+
+  .project-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
-  .embla {
-    overflow: hidden;
-    grid-column: span 10;
+
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+
+    .projects-section {
+      margin-bottom: 40px;
+    }
+
+    .project-item {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+    }
   }
-  .embla__container {
-    display: flex;
-  }
-  .embla__slide {
-    flex: 0 0 100%;
-    min-width: 0;
-    display: grid;
-  }
-  .embla__viewport, .embla__container {
-}
 
 </style>

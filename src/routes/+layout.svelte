@@ -1,228 +1,251 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import * as THREE from "three";
-  import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-  import LoadingScreen from "../LoadingScreen.svelte";
-  import { isLoading } from "$lib/stores/loadingStore.js";
-  import SocialMedia from "../components/SocialMedia.svelte";
+  import { page } from "$app/stores";
 
-  if (browser) {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
-
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    const objLoader = new OBJLoader();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.domElement.style.position = "fixed";
-    renderer.domElement.style.top = "0";
-    renderer.domElement.style.left = "0";
-    renderer.domElement.style.zIndex = "-1"; // Ensure it's behind other content
-    document.body.appendChild(renderer.domElement);
-    let loadedObject = null;
-
-    objLoader.load(
-      "models/hundepaar_medium_res.obj",
-      function (object) {
-        console.log(object);
-
-        const degreesToRadians = (degrees) => degrees * (Math.PI / 180);
-
-        scene.add(object);
-        loadedObject = object;
-        console.log("Model loaded, setting isLoading to false");
-
-        isLoading.set(false);
-      },
-      function (xhr) {
-        // onProgress callback
-        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-      },
-      function (error) {
-        console.error("An error happened loading the OBJ file", error);
-        isLoading.set(false);
-      },
-    );
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1);
-    scene.add(directionalLight);
-
-    camera.position.z = 4;
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      if (loadedObject) {
-        loadedObject.rotation.y += 0.005;
-      }
-
-      renderer.render(scene, camera);
-    }
-    animate();
-  }
-
-  let username = "imoni.mccorvey";
+  let username = "imccorve";
   let domain = "gmail";
   let tld = "com";
 
-  // Function to handle the contact click event
   function sendEmail() {
     window.location.href = `mailto:${username}@${domain}.${tld}`;
   }
+
+  // Projects data for navigation
+  export let projects = [
+    {
+      title: "AudioReactive Blob Tracking",
+      subtitle:
+        "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
+      src: "https://www.youtube.com/embed/79bOJq-iLXQ?si=MLkCdnPxQOt4N3_3",
+      mediaType: "twitter-video",
+      slug: "/",
+    },
+    {
+      title: "Computer Vision-Powered Party Flyer",
+      subtitle:
+        "Leveraged machine learning and Touchdesigner to correlate different gestures with specific audio and visuals in real-time.",
+      src: "https://www.youtube.com/embed/8hOX5mp-MnA?feature=share",
+      mediaType: "twitter-video",
+      slug: "/",
+    },
+    {
+      title: "Building An 'Interactive' Digital Pet",
+      subtitle:
+        "Coding and hardware integration project using python and an LED display.",
+      src: "https://www.youtube.com/embed/sq4PbmjjUJk?si=zglUXN8a87WEdicD",
+      extraLink: "/the-human-tamagotchi",
+      mediaType: "twitter-video",
+      slug: "/",
+    },
+    {
+      title: "Particle System using openFrameworks",
+      subtitle: "Created using openFrameworks https://openframeworks.cc/",
+      mediaType: "vimeo",
+      slug: "/",
+    },
+  ];
+
+  $: currentPath = $page.url.pathname;
 </script>
 
 <filter id="photocopyEffect">
   <feTurbulence
     type="fractalNoise"
     baseFrequency="0.02"
-    numOctaves="3"
+    numOctaves="4"
     result="noise"
   />
   <feDisplacementMap
     in="SourceGraphic"
     in2="noise"
-    scale="10"
+    scale="3"
     xChannelSelector="R"
     yChannelSelector="G"
   />
+    <feGaussianBlur in="SourceGraphic" stdDeviation=".5" result="blurred" />
+
 </filter>
 
-<filter id="distressInkEffect3" x="0%" y="0%" width="100%" height="100%">
-  <feTurbulence
-    type="fractalNoise"
-    baseFrequency="0.01"
-    numOctaves="3"
-    stitchTiles="stitch"
-    result="turbulence"
-  />
-  <feDisplacementMap
-    in="SourceGraphic"
-    in2="turbulence"
-    scale="2"
-    xChannelSelector="R"
-    yChannelSelector="G"
-  />
-  <feGaussianBlur in="SourceGraphic" stdDeviation=".8" result="blurred" />
+<div class="layout-container">
+    <title> Imoni McCorvey </title>
+  <aside class="sidebar">
+    <div class="sidebar-content">
+      <div class="site-title">
+        <a href="/"> IMONI MCCORVEY </a>
+      </div>
+      <p class="site-description">
+        Experienced software engineer exploring creative applications of technology. Currently working on audio reactive visuals and hardware integration into creative projects.
+      </p>
 
-  <feComponentTransfer in="blurred" result="contrast">
-    <feFuncA type="table" tableValues="0 1" />
-  </feComponentTransfer>
-  <feComposite
-    in="sharpened"
-    in2="noise"
-    operator="arithmetic"
-    k1="0"
-    k2="1"
-    k3="1"
-    k4="0"
-    result="composite"
-  />
-</filter>
+      <nav class="navigation">
+        {#each projects as project, index}
+          <a
+      href="/#project-{index}"
+      class="nav-link"
+      class:active={currentPath === (index === 0 ? "/" : `/#project-${index}`)}
+    >
+            {project.title}
+          </a>
+        {/each}
+      </nav>
 
-{#if $isLoading}
-  <LoadingScreen />
-{:else}
-  <div class="grid-container">
-    <div class="header">
-      <a href="/">
-        <h2>IMONI MCCORVEY</h2>
-      </a>
-      <SocialMedia />
+      <div class="social-links">
+        <button on:click={sendEmail} class="social-link">Email</button>
+        <a href="https://www.instagram.com/imonitroni/" aria-label="Link to my instagram" target="_blank" rel="noopener noreferrer" class="social-link"
+          >Instagram</a
+        >
+      </div>
     </div>
-    <slot/>
-    <footer class="footer">
-      <button on:click={sendEmail}>
-        <h2>CONTACT</h2>
-      </button>
-      <a href="/about">
-        <h2>ABOUT</h2>
-      </a>
-    </footer>
-  </div>
-{/if}
+  </aside>
+
+  <main class="main-content">
+    <slot />
+  </main>
+</div>
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 20px;
-    grid-row-gap: 64px;
-    margin: 20px 4px;
-    font-family: "IBM Plex Mono", monospace;
+  .layout-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
   }
 
-  /* Header */
-  .header {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: space-between; /* Align items to the ends of the container */
-    align-items: center;
+  /* Sidebar Styles */
+  .sidebar {
+    width: 300px;
+    border-right: 1px solid #e0e0e0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
   }
 
-  /* Footer */
-  .footer {
-    grid-column: 1 / -1;
+  .sidebar-content {
+    padding: 40px 30px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .site-title {
+    font-style: normal;
+    font-size: 32px;
+    font-weight: 400;
+    margin: 0;
     filter: url(#photocopyEffect);
   }
 
-  h2 {
-    font-style: normal;
-    font-size: 32px;
-    font-weight: 400;
-    margin: 0;
-    filter: url(#distressInkEffect3);
-    margin-right: 20px;
-  }
-
-  a {
+  .site-title a {
     text-decoration: none;
+    color: #A979D1;
   }
 
-  button {
-    font-style: normal;
-    font-size: 32px;
-    font-weight: 400;
-
-    /* override button styles */
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
+  .site-description {
+    font-size: 14px;
+    line-height: 1.5;
+    /* color: #666; */
     margin: 0;
+  }
+
+  /* Navigation Styles */
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-link {
+    text-decoration: underline;
+    color: #000;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #666;
+  }
+
+  .nav-link.active {
+    font-weight: bold;
+  }
+
+  /* Social Links */
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .social-link {
+    text-decoration: underline;
+    color: #000;
+    font-size: 14px;
+    background: none;
+    border: none;
     padding: 0;
-    text-align: inherit;
-    font: inherit;
-    border-radius: 0;
-    appearance: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: #666;
+  }
+
+  /* Main Content Styles */
+  .main-content {
+    margin-left: 300px;
+    flex: 1;
+    padding: 40px;
+    background-color: #f5f5f5;
   }
 
   @media (max-width: 768px) {
-    .grid-container {
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 10px;
-      grid-row-gap: 32px;
-    }
-
-    .footer {
+    .layout-container {
       flex-direction: column;
-      align-items: flex-start;
     }
 
-    .footer h2 {
-      margin: 0;
+    .sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #e0e0e0;
     }
 
-    h2 {
-      font-size: 24px;
+    .sidebar-content {
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .site-title h1 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .site-description {
+      font-size: 14px;
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: 20px;
+    }
+
+    .navigation,
+    .social-links {
+      gap: 5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sidebar-content {
+      padding: 15px;
+    }
+
+    .main-content {
+      padding: 15px;
     }
   }
 </style>

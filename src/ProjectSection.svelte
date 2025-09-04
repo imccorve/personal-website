@@ -1,85 +1,149 @@
-<script>
-  export let project;
+<script lang="ts">
+  export let project: {
+    pageData: number;
+    title: string;
+    subtitle: string;
+    src?: string;
+    extraLink?: string;
+    mediaType: string;
+  };
 </script>
 
-<div class="project-display">
-  <div class="media">
-    {#if project.mediaType === "video"}
-      <video
-        src={project.src}
-        controls
-        controlsList="nodownload"
-        aria-label="Ambient music with no speaking or necessary captions"
-      ></video>
-    {:else if project.mediaType === "twitter-video"}
-      <!-- Twitter embed iframe (you'll need to use the proper embed code from Twitter) -->
-      <iframe width="100%" height="100%" modestbranding=1 controls=0 src={project.src + '&modestbranding=1' + '&showinfo=0' + '&controls=0' + '&rel=0' + '&color=white' + '&fs=0' + '&loop=1'} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    {:else if project.mediaType === "vimeo"}
-    <iframe src="https://player.vimeo.com/video/292496099?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="top:0;left:0;width:100%;height:100%;" title="Particle_System_video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
-    {:else}
-      <img src={project.src} alt={project.title} />
-    {/if}
-  </div>
-  <div class="information">
-    <h1 class="title">{project.title}</h1>
-    <p class="subtitle">{project.subtitle}</p>
+<article class="project-container">
+  <div class="project-content">
+    <div class="project-title">{project.title}</div>
+    <p class="project-description">{project.subtitle}</p>
+
     {#if project.extraLink}
-        <a href={project.extraLink}>
-            Read my process here
-        </a>
+      <a href={project.extraLink} class="project-link">View Details →</a>
     {/if}
   </div>
-</div>
+
+  <div>
+    {#if project.src}
+      <div class="page-number">{project.pageData}</div>
+      <div class="project-media">
+        {#if project.mediaType === "youtube-video"}
+          <div class="video-container">
+            <iframe
+              src={project.src}
+              title={project.title}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        {:else if project.mediaType === "vimeo"}
+            <iframe src={project.src} frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="top:0;left:0;width:100%;height:100%;" title="Particle_System_video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
+        {:else}
+          <div class="media-placeholder">
+            <p>Media Content</p>
+          </div>
+        {/if}
+      </div>
+    {:else}
+      <div class="project-media">
+        <div class="media-placeholder">
+          <p>Media Content</p>
+        </div>
+      </div>
+    {/if}
+  </div>
+</article>
 
 <style>
-    .project-display {
-      display: flex;
-  }
-  .media {
-    height: 500px;
-    overflow: hidden; /* Continue to hide overflow */
-    display: flex; /* Use flexbox to center the video */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    margin-right: 20px;
-    min-width: 50%;
+  .project-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    font-size: 14px;
   }
 
-  .media > video {
-    /* 
-      max-height: 100%; -- Prevents the video, iframe, or image from exceeding the container's height  */
+  .project-media {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    background-color: #e8e8e8;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .project-media iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the container without losing aspect ratio */
   }
 
-  h1 {
-    font-weight: 400;
-    font-size: 4em;
+  .project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+  }
+
+  .project-title {
+    margin: 0;
+    color: #000;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+
+  .page-number {
+    margin-bottom: 20px;
+  }
+
+  .project-description {
+    line-height: 1.6;
+    color: #000;
     margin: 0;
   }
 
-  p {
-    margin: 0;
+  .project-link {
+    text-decoration: underline;
+    color: #000;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    align-self: flex-start;
   }
-  .subtitle {
-    font-family: "Open Sans", sans-serif;
-    font-size: 20px;
-    font-weight: 200;
+
+  .project-link:hover {
+    color: #666;
   }
-  @media (max-width: 1280px) {
-    .project-display {
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: flex-start; /* Align to the start of the container */
-      grid-row-gap: 32px;
-    }
-    .media {
-      width: 100%;
+
+  .media-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #999;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .project-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    h1 {
-      font-size: 40px;
+    .project-media {
+      height: 250px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-media {
+      height: 70px;
     }
   }
 </style>
