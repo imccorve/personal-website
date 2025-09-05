@@ -74,6 +74,8 @@
       </div>
       <p class="site-description">
         Experienced software engineer exploring creative applications of technology. Currently working on audio reactive visuals and hardware integration into creative projects.
+
+        Based in Chicago.
       </p>
 
       <nav class="navigation">
