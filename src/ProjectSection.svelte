@@ -13,7 +13,9 @@
   <div class="project-content">
     <div class="project-title">{project.title}</div>
     <p class="project-description">{project.subtitle}</p>
-
+    {#if project.supplies}
+        <p class="project-description">{project.supplies}</p>
+        {/if}
     {#if project.extraLink}
       <a href={project.extraLink} class="project-link">View Details →</a>
     {/if}
@@ -22,6 +24,12 @@
   <div>
     {#if project.src}
       <div class="page-number">{project.pageData}</div>
+      {#if project.mediaType === "raw-video"}
+       <video controls width="100%">
+    <source src={project.src} type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+    {:else}   
       <div class="project-media">
         {#if project.mediaType === "youtube-video"}
           <div class="video-container">
@@ -35,12 +43,18 @@
           </div>
         {:else if project.mediaType === "vimeo"}
             <iframe src={project.src} frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="top:0;left:0;width:100%;height:100%;" title="Particle_System_video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>
+        {:else if project.mediaType === "raw-video"}
+    <video controls width="100%">
+    <source src={project.src} type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
         {:else}
           <div class="media-placeholder">
             <p>Media Content</p>
           </div>
         {/if}
       </div>
+      {/if}
     {:else}
       <div class="project-media">
         <div class="media-placeholder">

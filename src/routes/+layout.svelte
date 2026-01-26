@@ -12,6 +12,14 @@
   // Projects data for navigation
   export let projects = [
     {
+      title: "The Instant Gratification Blind Box: Lafufu Gacha Game",
+      subtitle:
+        "This interactive installation explores our relationship with instant satisfaction and the thrill of collecting. Visitors experience a simulated \"blind box\" unboxing by receiving an official authentication receipt for a randomly generated “Lafufu” collectible without the usual waiting, hunting, or inflated resale prices. By pressing the button, participants generate documentation detailing their theoretical collectible's attributes and value. The work questions whether the excitement of acquiring something rare lies in owning the object itself or simply in the act of \"winning\" it.",
+      src: "/lafufu2025.mp4",
+      mediaType: "raw-video",
+      slug: "/",
+    },
+    {
       title: "AudioReactive Blob Tracking",
       subtitle:
         "Using Touchdesigner & computer vision I remixed footage from David Flaherty's 'Gift of Green' (1946), courtesy of the Perlinger Archives/Collection.",
